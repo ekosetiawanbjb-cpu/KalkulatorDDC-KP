@@ -257,11 +257,15 @@ function hitung() {
     <div class="total">Total Bonus: ${formatRupiah(totalBonus)}</div>
 `;
 }
+    window.addEventListener("DOMContentLoaded", function() {
     const bonusInput = document.getElementById("bonusTarget");
 
-bonusInput.addEventListener("input", function(e) {
-    let angka = this.value.replace(/\D/g, ""); // ambil angka saja
-    this.value = formatRupiahInput(angka);
+    if (bonusInput) {
+        bonusInput.addEventListener("input", function() {
+            let angka = this.value.replace(/\D/g, "");
+            this.value = formatRupiahInput(angka);
+        });
+    }
 });
 
 function formatRupiahInput(angka) {
