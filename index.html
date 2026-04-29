@@ -106,7 +106,7 @@ button {
         </select>
 
         <label>Target Bonus (Rp)</label>
-        <input type="number" id="bonusTarget" placeholder="Contoh: 3000000">
+        <input type="text" id="bonusTarget" inputmode="numeric" placeholder="Rp 0">
 
         <label>Jumlah Hari Kerja</label>
         <input type="number" id="hari" value="26">
@@ -164,7 +164,9 @@ function showMode(mode) {
 /* ================= TARGET ================= */
 function hitungTarget() {
     let tipe = document.getElementById('tipeTarget').value;
-    let bonusTarget = parseInt(document.getElementById('bonusTarget').value) || 0;
+    let bonusTarget = parseInt(
+    document.getElementById('bonusTarget').value.replace(/[^0-9]/g, "")
+) || 0;
     let hari = parseInt(document.getElementById('hari').value) || 1;
 
     let b1, b2, t1, t2;
@@ -254,6 +256,17 @@ function hitung() {
 
     <div class="total">Total Bonus: ${formatRupiah(totalBonus)}</div>
 `;
+}
+    const bonusInput = document.getElementById("bonusTarget");
+
+bonusInput.addEventListener("input", function(e) {
+    let angka = this.value.replace(/\D/g, ""); // ambil angka saja
+    this.value = formatRupiahInput(angka);
+});
+
+function formatRupiahInput(angka) {
+    if (!angka) return "Rp ";
+    return "Rp " + angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
 </script>
