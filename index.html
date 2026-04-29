@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6FN8TZPL3N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6FN8TZPL3N');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kalkulator SPX</title>
@@ -153,11 +162,20 @@ function showMode(mode) {
         insentif.style.display = "none";
         btnT.classList.add("active");
         btnI.classList.remove("active");
+
+        if (typeof gtag === "function") {
+            gtag('event', 'switch_mode', { mode: 'target' });
+        }
+
     } else {
         target.style.display = "none";
         insentif.style.display = "block";
         btnT.classList.remove("active");
         btnI.classList.add("active");
+
+        if (typeof gtag === "function") {
+            gtag('event', 'switch_mode', { mode: 'insentif' });
+        }
     }
 }
 
@@ -199,6 +217,12 @@ function hitungTarget() {
         Paket per Hari: <b>${perHari}</b><br>
         Estimasi Hari: <b>${hari} hari</b>
     `;
+    if (typeof gtag === "function") {
+    gtag('event', 'hitung_target', {
+        tipe: tipe,
+        bonus: bonusTarget
+    });
+}
 }
 
 /* ================= INSENTIF ================= */
@@ -250,12 +274,16 @@ function hitung() {
 
     document.getElementById('hasil').innerHTML = `
     <b>Tipe:</b> ${tipe === "dedicated" ? "Dedicated" : "Kurir Plus"}<br><br>
-
     Tier 1: ${paket1} paket (${formatRupiah(bonus1)})<br>
     Tier 2: ${paket2} paket (${formatRupiah(bonus2)})<br>
-
     <div class="total">Total Bonus: ${formatRupiah(totalBonus)}</div>
 `;
+    if (typeof gtag === "function") {
+    gtag('event', 'hitung_insentif', {
+        tipe: tipe,
+        total_paket: total
+    });
+}
 }
     window.addEventListener("DOMContentLoaded", function() {
     const bonusInput = document.getElementById("bonusTarget");
@@ -265,6 +293,7 @@ function hitung() {
             let angka = this.value.replace(/\D/g, "");
             this.value = formatRupiahInput(angka);
         });
+        
     }
 });
 
