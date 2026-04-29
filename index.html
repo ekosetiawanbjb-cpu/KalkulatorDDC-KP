@@ -145,6 +145,21 @@ button {
 </div>
 
 <script>
+  const CONFIG = {
+    dedicated: {
+        t1: 1850,
+        t2: 3010,
+        b1: 800,
+        b2: 1100
+    },
+    plus: {
+        t1: 1025,
+        t2: 2685,
+        b1: 450,
+        b2: 775
+    }
+};
+  
 function formatRupiah(angka) {
     return 'Rp' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -187,15 +202,7 @@ function hitungTarget() {
 ) || 0;
     let hari = parseInt(document.getElementById('hari').value) || 1;
 
-    let b1, b2, t1, t2;
-
-    if (tipe === "dedicated") {
-        b1 = 800; b2 = 1100;
-        t1 = 1850; t2 = 3010;
-    } else {
-        b1 = 450; b2 = 775;
-        t1 = 1025; t2 = 2685;
-    }
+    let { b1, b2, t1, t2 } = CONFIG[tipe];
 
     let maxTier1 = (t2 - t1) * b1;
 
@@ -228,34 +235,19 @@ function hitungTarget() {
 /* ================= INSENTIF ================= */
 function setDefaultTarget() {
     let tipe = document.getElementById('tipe').value;
+    let { t1, t2 } = CONFIG[tipe];
 
-    if (tipe === "dedicated") {
-        document.getElementById('target1').value = 1900;
-        document.getElementById('target2').value = 3050;
-    } else {
-        document.getElementById('target1').value = 1025;
-        document.getElementById('target2').value = 2685;
-    }
+    document.getElementById('target1').value = t1;
+    document.getElementById('target2').value = t2;
+}
 }
 
-
+  
 function hitung() {
     let tipe = document.getElementById('tipe').value;
     let total = parseInt(document.getElementById('total').value) || 0;
 
-    let b1, b2, t1, t2;
-
-    if (tipe === "dedicated") {
-        b1 = 800;
-        b2 = 1100;
-        t1 = 1850;
-        t2 = 3010;
-    } else {
-        b1 = 450;
-        b2 = 775;
-        t1 = 1025;
-        t2 = 2685;
-    }
+    let { b1, b2, t1, t2 } = CONFIG[tipe];
 
     let paket1 = 0;
     let paket2 = 0;
