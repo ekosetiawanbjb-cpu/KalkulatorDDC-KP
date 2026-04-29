@@ -247,10 +247,13 @@ function hitung() {
     let totalBonus = bonus1 + bonus2;
 
     document.getElementById('hasil').innerHTML = `
-        Tier 1: ${paket1} paket (${formatRupiah(bonus1)})<br>
-        Tier 2: ${paket2} paket (${formatRupiah(bonus2)})<br>
-        <div class="total">Total Bonus: ${formatRupiah(totalBonus)}</div>
-    `;
+    <b>Tipe:</b> ${tipe === "dedicated" ? "Dedicated" : "Kurir Plus"}<br><br>
+
+    Tier 1: ${paket1} paket (${formatRupiah(bonus1)})<br>
+    Tier 2: ${paket2} paket (${formatRupiah(bonus2)})<br>
+
+    <div class="total">Total Bonus: ${formatRupiah(totalBonus)}</div>
+`;
 }
 
 </script>
