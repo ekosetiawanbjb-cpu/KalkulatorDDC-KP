@@ -110,6 +110,16 @@ button {
         </button>
     </div>
 
+  <div class="toggle">
+    <button onclick="showMode('target')" id="btnTarget" class="active">
+        Target Paket
+    </button>
+
+    <button onclick="showMode('insentif')" id="btnInsentif">
+        Kalkulator Insentif
+    </button>
+</div>
+
     <!-- ================= TARGET MODE ================= -->
     <div id="modeTarget">
         <label>Pilih Tipe Kurir</label>
@@ -149,7 +159,6 @@ button {
 </div>
 
 <script>
-  const CONFIG = {
   let bulanAktif = "mei";
 
 const DATA = {
@@ -276,7 +285,7 @@ function hitungTarget() {
 /* ================= INSENTIF ================= */
 function setDefaultTarget() {
     let tipe = document.getElementById('tipe').value;
-    let { t1, t2 } = CONFIG[tipe];
+    let { t1, t2 } = DATA[bulanAktif][tipe];
 
     document.getElementById('target1').value = t1;
     document.getElementById('target2').value = t2;
