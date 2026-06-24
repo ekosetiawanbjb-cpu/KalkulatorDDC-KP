@@ -100,10 +100,14 @@ button {
 
     <h2>SPX</h2>
 
-    <!-- TOGGLE -->
     <div class="toggle">
-        <button onclick="showMode('target')" id="btnTarget" class="active">Target Paket</button>
-        <button onclick="showMode('insentif')" id="btnInsentif">Kalkulator Insentif</button>
+        <button onclick="gantiBulan('mei')" id="btnMei" class="active">
+            Prod Mei
+        </button>
+
+        <button onclick="gantiBulan('juni')" id="btnJuni">
+            Prod Juni
+        </button>
     </div>
 
     <!-- ================= TARGET MODE ================= -->
@@ -146,19 +150,56 @@ button {
 
 <script>
   const CONFIG = {
-    dedicated: {
-        t1: 1900,
-        t2: 3060,
-        b1: 800,
-        b2: 1100
+  let bulanAktif = "mei";
+
+const DATA = {
+
+    mei: {
+        dedicated: {
+            t1: 1900,
+            t2: 3060,
+            b1: 800,
+            b2: 1100
+        },
+        plus: {
+            t1: 1100,
+            t2: 2950,
+            b1: 525,
+            b2: 900
+        }
     },
-    plus: {
-        t1: 1100,
-        t2: 2950,
-        b1: 525,
-        b2: 900
+
+    juni: {
+        dedicated: {
+            t1: 1900,
+            t2: 3060,
+            b1: 800,
+            b2: 1100
+        },
+        plus: {
+            t1: 1100,
+            t2: 2950,
+            b1: 525,
+            b2: 900
+        }
     }
+
 };
+
+  function gantiBulan(bulan){
+
+    bulanAktif = bulan;
+
+    document.getElementById("btnMei").classList.remove("active");
+    document.getElementById("btnJuni").classList.remove("active");
+
+    if(bulan === "mei"){
+        document.getElementById("btnMei").classList.add("active");
+    }else{
+        document.getElementById("btnJuni").classList.add("active");
+    }
+
+}
   
 function formatRupiah(angka) {
     return 'Rp' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -202,7 +243,7 @@ function hitungTarget() {
 ) || 0;
     let hari = parseInt(document.getElementById('hari').value) || 1;
 
-    let { b1, b2, t1, t2 } = CONFIG[tipe];
+    let { b1, b2, t1, t2 } = DATA[bulanAktif][tipe];
 
     let maxTier1 = (t2 - t1) * b1;
 
@@ -245,7 +286,7 @@ function hitung() {
     let tipe = document.getElementById('tipe').value;
     let total = parseInt(document.getElementById('total').value) || 0;
 
-    let { b1, b2, t1, t2 } = CONFIG[tipe];
+    let { b1, b2, t1, t2 } = DATA[bulanAktif][tipe];
 
     let paket1 = 0;
     let paket2 = 0;
