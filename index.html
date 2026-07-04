@@ -12,7 +12,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kalkulator SPX</title>
+<title>Kalkulator SPX Banjarbaru Utara</title>
 
 <style>
 body {
@@ -98,15 +98,15 @@ button {
 
 <div class="container">
 
-    <h2>SPX</h2>
+    <h2>SPX Banjarbaru Utara</h2>
 
     <div class="toggle">
-        <button onclick="gantiBulan('mei')" id="btnMei" class="active">
-            Prod Mei
+        <button onclick="gantiBulan('juni')" id="btnMei" class="active">
+            Prod Juni
         </button>
 
-        <button onclick="gantiBulan('juni')" id="btnJuni">
-            Prod Juni
+        <button onclick="gantiBulan('juli')" id="btnJuni">
+            Prod Juli
         </button>
     </div>
 
@@ -159,24 +159,9 @@ button {
 </div>
 
 <script>
-  let bulanAktif = "mei";
+  let bulanAktif = "juni";
 
 const DATA = {
-
-    mei: {
-        dedicated: {
-            t1: 1900,
-            t2: 3060,
-            b1: 800,
-            b2: 1100
-        },
-        plus: {
-            t1: 1100,
-            t2: 2950,
-            b1: 525,
-            b2: 900
-        }
-    },
 
     juni: {
         dedicated: {
@@ -191,6 +176,21 @@ const DATA = {
             b1: 525,
             b2: 900
         }
+    },
+
+    juli: {
+        dedicated: {
+            t1: 2000,
+            t2: 3210,
+            b1: 800,
+            b2: 1100
+        },
+        plus: {
+            t1: 1290,
+            t2: 3020,
+            b1: 525,
+            b2: 900
+        }
     }
 
 };
@@ -199,13 +199,13 @@ const DATA = {
 
     bulanAktif = bulan;
 
-    document.getElementById("btnMei").classList.remove("active");
     document.getElementById("btnJuni").classList.remove("active");
+    document.getElementById("btnJuli").classList.remove("active");
 
-    if(bulan === "mei"){
-        document.getElementById("btnMei").classList.add("active");
-    }else{
+    if(bulan === "juni"){
         document.getElementById("btnJuni").classList.add("active");
+    }else{
+        document.getElementById("btnJuli").classList.add("active");
     }
 
 }
