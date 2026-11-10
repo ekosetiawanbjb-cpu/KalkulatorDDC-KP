@@ -101,12 +101,12 @@ button {
     <h2>SPX Banjarbaru Utara</h2>
 
     <div class="toggle">
-        <button onclick="gantiBulan('september')" id="btnSeptember" class="active">
-            Prod September
+        <button onclick="gantiBulan('oktober')" id="btnOktober" class="active">
+            Prod Oktober
         </button>
 
-        <button onclick="gantiBulan('oktober')" id="btnOktober">
-            Prod Oktober
+        <button onclick="gantiBulan('november')" id="btnNovember">
+            Prod November
         </button>
     </div>
 
@@ -159,24 +159,9 @@ button {
 </div>
 
 <script>
-  let bulanAktif = "september";
+  let bulanAktif = "oktober";
 
 const DATA = {
-
-    september: {
-        dedicated: {
-            t1: 1690,
-            t2: 2795,
-            b1: 800,
-            b2: 1100
-        },
-        plus: {
-            t1: 730,
-            t2: 1710,
-            b1: 525,
-            b2: 900
-        }
-    },
 
     oktober: {
         dedicated: {
@@ -191,6 +176,21 @@ const DATA = {
             b1: 525,
             b2: 900
         }
+    },
+
+    november: {
+        dedicated: {
+            t1: 1580,
+            t2: 2575,
+            b1: 800,
+            b2: 1100
+        },
+        plus: {
+            t1: 715,
+            t2: 1595,
+            b1: 525,
+            b2: 900
+        }
     }
 
 };
@@ -199,13 +199,13 @@ const DATA = {
 
     bulanAktif = bulan;
 
-    document.getElementById("btnSeptember").classList.remove("active");
     document.getElementById("btnOktober").classList.remove("active");
+    document.getElementById("btnNovember").classList.remove("active");
 
-    if(bulan === "september"){
-        document.getElementById("btnSeptember").classList.add("active");
-    }else{
+    if(bulan === "Oktober"){
         document.getElementById("btnOktober").classList.add("active");
+    }else{
+        document.getElementById("btnNovember").classList.add("active");
     }
 
 }
